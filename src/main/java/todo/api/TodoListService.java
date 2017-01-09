@@ -1,9 +1,15 @@
+/* 
+ * Handles all the crud requests for todo-list
+ * @author jnana
+ */
+
 package todo.api;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -91,8 +97,8 @@ public class TodoListService {
 	}
 	
 	//TODO Delete a task, will be a get request
-	@GET
-	@Path("deleteTask/{title}")
+	@DELETE
+	@Path("/{title}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public static String deleteTask(@PathParam("title")String title){
@@ -120,8 +126,6 @@ public class TodoListService {
 		System.out.println("post data : "+ data);
 		try {
 			JSONObject taskData = (JSONObject) new JSONParser().parse(data);
-			System.out.println("addTask json : "+taskData.toString());
-			System.out.println("tags type : "+ taskData.get("tags").getClass());
 			String title = "";
 			String desc = "";
 			String task = "";
@@ -148,7 +152,6 @@ public class TodoListService {
 			String tags = "";
 			//check if tags is a string or JSONArray and do the needful
 			if(taskData.containsKey("tags") && taskData.get("tags").getClass() == (JSONArray.class)){
-				System.out.println("in the if block");
 				JSONArray arr = (JSONArray) taskData.get("tags");
 				for(Object tag : arr){
 					if(tags.equals("")){
@@ -163,7 +166,6 @@ public class TodoListService {
 				tags.replace(']',' ');
 				tags.trim();
 			}
-			System.out.println("tags at end : " + tags);
 			//list.addTask(taskData.get("title").toString(), taskData.get("desc").toString(), taskData.get("tags").toString(), LocalDateTime.parse(taskData.get("dueDate").toString(), DateTimeFormatter.ISO_LOCAL_DATE_TIME));
 			list.addTask(title, desc, tags, dueDate, assignee);		
 		} catch (ParseException e) {

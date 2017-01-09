@@ -1,3 +1,8 @@
+/*
+ * Each of the tasks
+ * 
+ * @author jnana
+ */
 package todo.data;
 
 import java.time.LocalDateTime;
@@ -145,6 +150,7 @@ public class Task {
 			json.put("assignee", this.assignee.toString());
 		}
 		return json.toString();
+		//return json.toJSONString();
 	}
 	
 	public enum STATE{

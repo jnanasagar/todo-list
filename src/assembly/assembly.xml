@@ -7,11 +7,10 @@
 	</formats>
 	<fileSets>
 		<fileSet>
-			<directory>${project.basedir}/target</directory>
+			<directory>${project.basedir}</directory>
 			<includes>
-				<include>*.war</include>
+				<include>./*</include>
 			</includes>
-			<outputDirectory>/war</outputDirectory>
 		</fileSet>
 	</fileSets>
 </assembly>

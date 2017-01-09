@@ -1,3 +1,9 @@
+/*
+ * provides todo-list behaviour
+ * 
+ * @author jnana
+ */
+
 package todo.data;
 
 import java.time.LocalDateTime;
@@ -124,5 +130,6 @@ public class TodoList {
 			count++;
 		}
 		return json.toString();
+		//return json.toJSONString();
 	}
 }
